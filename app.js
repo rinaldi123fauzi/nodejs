@@ -89,6 +89,10 @@ app.use(morgan('dev'))
         })
     })
 
+    app.get('/blogs/create', (req, res) => {
+        res.render('create', {title: 'Create'})
+    })
+
     app.post('/blogs', (req, res) => {
         const blog = new Blog(req.body)
         blog.save()
@@ -121,10 +125,6 @@ app.use(morgan('dev'))
         .catch(err => {
             console.log(err)
         })
-    })
-
-    app.get('/blogs/create', (req, res) => {
-        res.render('create', {title: 'Create'})
     })
 
     //redirects
