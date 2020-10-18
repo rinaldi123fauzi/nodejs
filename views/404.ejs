@@ -4,22 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Node JS <%= title %></title>
+    <%- include('./partials/head.ejs')%>
 </head>
 <body>
-    <nav>
-        <div class="site-title">
-            <a href="/"><h3>Home</h3></a>
-            <p>A net Node JS</p>
-        </div>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/blogs/create">New Blog</a></li>
-        </ul>
-    </nav>
+    
+    <%- include('./partials/nav.ejs')%>
 
     <div class="blogs content">
         <h2>Page not found</h2>
     </div>
+    <%- include('./partials/footer.ejs')%>
 </body>
 </html>
