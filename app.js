@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const { result } = require('lodash')
 const blogRoutes = require('./routes/blogRoutes')
+const AuthRoutes = require('./routes/authRoutes')
 
 //express app
 const app = express()
@@ -22,6 +23,7 @@ app.set('view engine', 'ejs')
 //middleware & static files
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true})) //for form data
+app.use(express.json())
 app.use(morgan('dev'))
 
 //mongoose and mongo sandbox routes
@@ -80,6 +82,9 @@ app.use(morgan('dev'))
 
     //blog routes
     app.use('/blogs', blogRoutes)
+
+    //auth routes
+    app.use('/api', AuthRoutes)
 
     //redirects
         // app.get('/about-us', (req, res) => {
