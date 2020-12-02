@@ -1,7 +1,7 @@
 const Blog = require('../models/blog')
 
-const blog_index = (req, res) => {
-    Blog.find().sort({createdAt: -1})
+const blog_index = async (req, res) => {
+    await Blog.find().sort({createdAt: -1})
     .then((result) => {
         res.render('blogs/index', {title: 'All Blogs', blogs:result})
     })
@@ -10,9 +10,9 @@ const blog_index = (req, res) => {
     })
 }
 
-const blog_details = (req, res) => {
+const blog_details = async (req, res) => {
     const id = req.params.id
-    Blog.findById(id)
+    await Blog.findById(id)
     .then(result => {
         res.render('blogs/details', { blog: result, title: 'Blog Details'} )
     })
@@ -25,8 +25,8 @@ const blog_create_get = (req, res) => {
     res.render('blogs/create', {title: 'Create New Blog'})
 }
 
-const blog_create_post = (req, res) => {
-    const blog = new Blog(req.body)
+const blog_create_post = async (req, res) => {
+    const blog = await new Blog(req.body)
     blog.save()
     .then((result) => {
         res.redirect('/blogs')
@@ -36,10 +36,10 @@ const blog_create_post = (req, res) => {
     })
 }
 
-const blog_delete = (req, res) => {
+const blog_delete = async (req, res) => {
     const id = req.params.id
 
-    Blog.findByIdAndDelete(id)
+    await Blog.findByIdAndDelete(id)
     .then(result => {
         res.json({redirect: '/blogs'})
     })
